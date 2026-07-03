@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: pawmunity
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      # --- PayHere payments (optional) ---
+      # Leave these unset to run with mock checkout (no real payments).
+      # Fill them in Render's dashboard (Environment tab) to enable PayHere.
+      - key: PAYHERE_MERCHANT_ID
+        sync: false
+      - key: PAYHERE_MERCHANT_SECRET
+        sync: false
+      - key: PAYHERE_SANDBOX
+        value: "true"
+      - key: APP_URL
+        sync: false
